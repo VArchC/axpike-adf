@@ -1,0 +1,27 @@
+// Approximation modeling declaration
+IM Ansari(word a, word b, word r, bool w, bool soa);
+
+// Instruction groups
+group mul64 {
+  instruction = {mul, mulh, mulhu, mulhsu};
+}
+
+approximation ILM_AA {
+    initial=off;
+    group mul64 {
+        alt_behavior = Ansari(FETCH_RS1, FETCH_RS2, FETCH_RD, false, true);
+    }
+    instruction mulw {
+        alt_behavior = Ansari(FETCH_RS1, FETCH_RS2, FETCH_RD, true, true);
+    }
+}
+
+approximation ILM_EA {
+    initial=off;
+    group mul64 {
+        alt_behavior = Ansari(FETCH_RS1, FETCH_RS2, FETCH_RD, false, false);
+    }
+    instruction mulw {
+        alt_behavior = Ansari(FETCH_RS1, FETCH_RS2, FETCH_RD, true, false);
+    }
+}

@@ -1,0 +1,17 @@
+// Approximation modeling declaration
+IM Kulkarni(word a, word b, word r, bool w);
+
+// Instruction groups
+group mul64 {
+  instruction = {mul, mulh, mulhu, mulhsu};
+}
+
+approximation KULKARNI {
+    initial=off;
+    group mul64 {
+        alt_behavior = Kulkarni(FETCH_RS1, FETCH_RS2, FETCH_RD, false);
+    }
+    instruction mulw {
+        alt_behavior = Kulkarni(FETCH_RS1, FETCH_RS2, FETCH_RD, true);
+    }
+}

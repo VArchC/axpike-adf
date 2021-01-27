@@ -1,0 +1,84 @@
+// Approximation modeling declaration
+DM Float2HalfPrecision(); 
+IM EvoApprox8B(word a, word b, word r, int mul, bool w);
+
+// Energy models
+//EM simple_em(); 
+
+// Operating //parameters
+//OP default_op  = {scaling   = 1.0000};
+//OP mul8_303_op = {scaling   = 0.9568};
+//OP mul8_469_op = {scaling   = 0.7919};
+//OP mul8_479_op = {scaling   = 0.7005};
+//OP mul8_423_op = {scaling   = 0.4997};
+//OP mul8_279_op = {scaling   = 0.3930};
+
+// Default energy model and operating //parameters
+//energy=simple_em(); 
+////parameters=default_op;
+
+// Instruction groups
+group mul64 {
+  instruction = {mul, mulh, mulhu, mulhsu};
+}
+
+approximation MUL8_303 {
+    initial=off;
+    group mul64 {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 303, false);
+        //parameters = mul8_303_op;
+    }
+    instruction mulw {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 303, true);
+        //parameters = mul8_303_op;
+    }
+}
+
+approximation MUL8_469 {
+    initial=off;
+    group mul64 {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 469, false);
+        //parameters = mul8_469_op;
+    }
+    instruction mulw {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 469, true);
+        //parameters = mul8_469_op;
+    }
+}
+
+approximation MUL8_479 {
+    initial=off;
+    group mul64 {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 479, false);
+        //parameters = mul8_479_op;
+    }
+    instruction mulw {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 479, true);
+        //parameters = mul8_479_op;
+    }
+}
+
+approximation MUL8_423 {
+    initial=off;
+    group mul64 {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 423, false);
+        //parameters = mul8_423_op;
+    }
+    instruction mulw {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 423, true);
+        //parameters = mul8_423_op;
+    }
+}
+
+approximation MUL8_279 {
+    initial=off;
+    group mul64 {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 279, false);
+        //parameters = mul8_279_op;
+    }
+    instruction mulw {
+        alt_behavior = EvoApprox8B(FETCH_RS1, FETCH_RS2, FETCH_RD, 279, true);
+        //parameters = mul8_279_op;
+    }
+}
+

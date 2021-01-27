@@ -1,0 +1,30 @@
+// Approximation modeling declaration
+//DM BitFlipWrite(word sp);
+DM BitFlipRead(word sp);
+//DM RandomBitFlip_(word sp, double probability);
+//PM SimpleProbability();
+//PM Probability();
+
+// Energy models
+//EM simple_em(); 
+
+// Operating parameters
+//OP default_op  = { energyincr  = 0.0333,
+//                    scaling     = 1.0000,
+//                    prob        = 0.0
+//                   };
+//OP approx_op =   { scaling     = 0.576,
+//                   prob        = 0.000000203
+//                   };
+
+// Default energy model and operating parameters
+//energy=simple_em(); 
+//parameters=default_op;
+
+approximation AXRAM {
+  initial = off;
+  //parameters = approx_op;
+  //probability = SimpleProbability();
+  mem_read = BitFlipRead(FETCH_REG(2));
+  //mem_write = BitFlipWrite(FETCH_REG(2));
+}
