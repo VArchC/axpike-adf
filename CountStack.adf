@@ -1,0 +1,6 @@
+DM TrackStackAccess(word sp);
+
+approximation CountStack {
+  mem_read = TrackStackAccess(FETCH_REG(2));
+  mem_write = TrackStackAccess(FETCH_REG(2));
+}
