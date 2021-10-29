@@ -25,8 +25,8 @@ IM Kulkarni(word a, word b, word r, bool w, processor_t* p) {
     op_b = b;
   }
 
-  for (int i = 0; i < 64; i += 2) {
-    for (int j = 0; j < 64; j += 2) {
+  for (int i = 0; i < 32; i += 2) {
+    for (int j = 0; j < 32; j += 2) {
       res += Kulkarni_base( (op_a&(0x3<<j))>>j, (op_b&(0x3<<i))>>i ) << (i + j);
     }
   }
